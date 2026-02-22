@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Online | Proyecto Final</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1> Sistema de Compras</h1>
+    </header>
+
+    <main class="container">
+        
+        <section id="catalogo">
+            <h2>Catálogo de Productos</h2>
+            <div id="lista-productos" class="grid-productos">
+                <p>Cargando productos...</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="carrito-seccion">
+            <h2>Tu Carrito</h2>
+            <table id="tabla-carrito">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Subtotal</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="items-carrito">
+                    </tbody>
+            </table>
+            
+            <div class="totales-carrito">
+                <p><strong>Total General: </strong>$<span id="total-general">0.00</span></p>
+                <button id="btn-confirmar" class="btn-primary">Confirmar Compra</button>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="modal-factura" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>📄 Factura de Venta</h2>
+            <div id="detalle-factura">
+                </div>
+            <button id="btn-seguir-comprando" class="btn-secondary">Seguir Comprando</button>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
