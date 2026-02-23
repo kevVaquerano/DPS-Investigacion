@@ -6,6 +6,12 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+header {
+    
+    text-align: center;
+}
+
+
 body {
     background-color: #f4f7f6;
     color: #333;
@@ -47,6 +53,13 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+}
+
+#catalogo {
+    text-align: center; 
+    padding: 40px 20px;
+    max-width: 1200px;  
+    margin: 0 auto;     
 }
 
 th, td {
