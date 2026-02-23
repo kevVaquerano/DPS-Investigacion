@@ -13,9 +13,11 @@ header {
 
 
 body {
-    background-color: #f4f7f6;
-    color: #333;
-    line-height: 1.6;
+        background-color: #ffffff; 
+    border-radius: 15px;
+    
+    padding: 30px;
+    margin-top: 50px;
 }
 
 .container {
