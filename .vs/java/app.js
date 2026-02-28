@@ -1,25 +1,11 @@
 // app.js
 
-
-
+import { productos } from "./BD.js";
 
 // ===============================
 // VARIABLES GLOBALES
 // ===============================
-let productos = []; 
 let carrito = [];
-
-export async function cargarProductosDesdeDB() {
-    try {
-        const respuesta = await fetch('http://localhost:3000/api/productos');
-        // Guardamos los datos que vienen de Railway en nuestra variable global 'productos'
-        productos = await respuesta.json(); 
-        mostrarProductos(); // Ahora sí, mostramos lo que trajo la DB
-    } catch (error) {
-        console.error("No se pudo conectar con el servidor", error);
-        listaProductos.innerHTML = "<p>Error al cargar productos. ¿Olvidaste encender el servidor Node?</p>";
-    }
-}
 
 // Elementos del DOM
 const listaProductos = document.getElementById("lista-productos");
@@ -33,11 +19,8 @@ const btnSeguir = document.getElementById("btn-seguir-comprando");
 // ===============================
 // MOSTRAR PRODUCTOS EN EL DOM
 // ===============================
-
 function mostrarProductos() {
     listaProductos.innerHTML = "";
-    
-    if (!Array.isArray(productos)) return;
 
     productos.forEach(producto => {
         const div = document.createElement("div");
@@ -45,13 +28,13 @@ function mostrarProductos() {
 
         div.innerHTML = `
             <h3>${producto.nombre}</h3>
-            <p>${producto.descripcion || ''}</p>
-            <p>Stock: <strong>${producto.stock}</strong></p>
-            <p><strong>$${parseFloat(producto.precio).toFixed(2)}</strong></p>
-            <button class="btn-primary" data-id="${producto.id}" ${producto.stock <= 0 ? 'disabled' : ''}>
-                ${producto.stock <= 0 ? 'Agotado' : 'Agregar al carrito'}
+            <p>${producto.descripcion}</p>
+            <p><strong>$${producto.precio.toFixed(2)}</strong></p>
+            <button class="btn-primary" data-id="${producto.id}">
+                Agregar al carrito
             </button>
         `;
+
         listaProductos.appendChild(div);
     });
 }
@@ -165,7 +148,6 @@ itemsCarrito.addEventListener("click", (e) => {
         eliminarProducto(id);
     }
 });
-
 
 // Confirmar compra
 btnConfirmar.addEventListener("click", generarFactura);
