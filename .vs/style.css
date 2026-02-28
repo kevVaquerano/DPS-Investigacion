@@ -87,7 +87,7 @@ th {
 }
 
 .btn-primary:hover {
-    background-color: #219150;
+    background-color: #36a765;
 }
 
 .btn-danger {
@@ -98,6 +98,8 @@ th {
     cursor: pointer;
     border-radius: 4px;
 }
+
+
 
 /* 5. Modal de la Factura (Importante para el Criterio 7) */
 .modal {
