@@ -1,1 +1,7 @@
-/HTML5Application/nbproject/private/
+node_modules/
+.vs/
+.vscode/
+.env
+.DS_Store
+dist/
+build/
