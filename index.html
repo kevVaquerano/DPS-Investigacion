@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amaretto Web Shop | Café salvadoreño</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Iconos Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- CSS propio -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-amaretto">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#inicio">
+                <i class="bi bi-cup-hot-fill"></i> Amaretto Coffee Shop
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-label="Abrir menú de navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a href="#inicio" class="nav-link">Inicio</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#sobre" class="nav-link">Nosotros</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#menu-digital" class="nav-link">Menú</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#catalogo" class="nav-link">Productos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#suscripcion" class="nav-link">Promociones</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#contacto" class="nav-link">Contacto</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="admin.html" class="nav-link">
+                            Administración
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <button class="btn btn-dorado btn-carrito-nav ms-lg-3 mt-2 mt-lg-0 position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#carritoFlotante">
+                            <i class="bi bi-cart4"></i> Ver carrito
+                            <span id="contador-carrito" class="contador-carrito">0</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header id="inicio" class="hero-amaretto">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-7 text-white">
+                    <span class="badge badge-amaretto mb-3">Café salvadoreño de especialidad</span>
+
+                    <h1 class="display-4 fw-bold mb-3">
+                        El sabor del café salvadoreño, ahora más cerca de ti
+                    </h1>
+
+                    <p class="lead mb-4">
+                        Disfruta una experiencia diferente con Amaretto Coffee Shop. Explora nuestro menú,
+                        elige tus productos favoritos y prepara tu pedido de forma rápida y sencilla.
+                    </p>
+
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="#catalogo" class="btn btn-dorado btn-lg">
+                            <i class="bi bi-bag-heart-fill"></i> Ver productos
+                        </a>
+
+                        <a href="#menu-digital" class="btn btn-outline-light btn-lg">
+                            Explorar menú
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 mt-5 mt-lg-0">
+                    <div class="hero-card">
+                        <i class="bi bi-cup-hot-fill hero-icon"></i>
+
+                        <h3>Café BLEND 100%</h3>
+
+                        <p>
+                            Cultivado a 1600 metros sobre el nivel del mar, en las faldas del Volcán de Santa Ana.
+                        </p>
+
+                        <div class="hero-stats">
+                            <div>
+                                <strong>100%</strong>
+                                <span>Café selecto</span>
+                            </div>
+
+                            <div>
+                                <strong>24/7</strong>
+                                <span>Menú disponible</span>
+                            </div>
+
+                            <div>
+                                <strong>13%</strong>
+                                <span>IVA incluido</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- NOSOTROS -->
+        <section id="sobre" class="section-padding bg-light">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                        <span class="subtitulo">Nuestra esencia</span>
+
+                        <h2 class="titulo-seccion">Amaretto Coffee Shop</h2>
+
+                        <p>
+                            Amaretto Coffee Shop nace con la pasión por el café de especialidad y el deseo de
+                            compartir una experiencia auténtica, cálida y cercana con cada cliente.
+                        </p>
+
+                        <p>
+                            Cada bebida representa el sabor de nuestras tierras, el cuidado en la selección del grano
+                            y el compromiso por ofrecer un servicio moderno, práctico y de calidad.
+                        </p>
+
+                        <a href="#catalogo" class="btn btn-dorado mt-3">
+                            Ordenar ahora
+                        </a>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="info-card">
+                                    <i class="bi bi-cup-hot"></i>
+                                    <h5>Café de especialidad</h5>
+                                    <p>Productos seleccionados para ofrecer sabor, aroma y calidad.</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="info-card">
+                                    <i class="bi bi-heart-fill"></i>
+                                    <h5>Pasión salvadoreña</h5>
+                                    <p>Inspirados en la tradición cafetera de El Salvador.</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="info-card">
+                                    <i class="bi bi-bag-check"></i>
+                                    <h5>Compra sencilla</h5>
+                                    <p>Elige tus productos favoritos y revisa tu pedido en el carrito.</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="info-card">
+                                    <i class="bi bi-phone"></i>
+                                    <h5>Experiencia digital</h5>
+                                    <p>Consulta el menú desde cualquier dispositivo de forma fácil.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MENÚ DIGITAL -->
+        <section id="menu-digital" class="section-padding bg-dark-amaretto text-white">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="subtitulo subtitulo-claro">Menú Amaretto</span>
+                    <h2 class="titulo-seccion text-white">Elige tu experiencia favorita</h2>
+                    <p class="descripcion-seccion text-white-50">
+                        Tenemos opciones para quienes disfrutan el café clásico, bebidas especiales y acompañamientos dulces.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="menu-card">
+                            <i class="bi bi-cup-hot-fill"></i>
+                            <h5>Cafés calientes</h5>
+                            <p>Americano, espresso, cappuccino, latte y más bebidas tradicionales.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="menu-card">
+                            <i class="bi bi-snow2"></i>
+                            <h5>Bebidas frías</h5>
+                            <p>Opciones refrescantes para disfrutar el café de una forma diferente.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="menu-card">
+                            <i class="bi bi-cake2-fill"></i>
+                            <h5>Postres</h5>
+                            <p>Acompañamientos dulces ideales para combinar con tu bebida favorita.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="menu-card">
+                            <i class="bi bi-stars"></i>
+                            <h5>Especialidades</h5>
+                            <p>Productos destacados de la casa preparados con el toque Amaretto.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTOS DESTACADOS -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="subtitulo">Favoritos de la casa</span>
+                    <h2 class="titulo-seccion">Productos destacados</h2>
+                    <p class="descripcion-seccion">
+                        Algunas opciones recomendadas para iniciar tu experiencia en Amaretto Coffee Shop.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="beneficio-card">
+                            <i class="bi bi-cup-hot-fill"></i>
+                            <h4>Café Amaretto</h4>
+                            <p>
+                                Una bebida especial con aroma intenso, sabor balanceado y esencia salvadoreña.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="beneficio-card">
+                            <i class="bi bi-cup-straw"></i>
+                            <h4>Latte especial</h4>
+                            <p>
+                                Una opción suave y cremosa para quienes prefieren un café más delicado.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="beneficio-card">
+                            <i class="bi bi-cake2-fill"></i>
+                            <h4>Postre de la casa</h4>
+                            <p>
+                                El complemento perfecto para acompañar tu bebida favorita.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATÁLOGO -->
+        <section id="catalogo" class="section-padding bg-crema">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="subtitulo">Catálogo</span>
+                    <h2 class="titulo-seccion">Productos disponibles</h2>
+                    <p class="descripcion-seccion">
+                        Selecciona tus productos favoritos y agrégalos al carrito para preparar tu pedido.
+                    </p>
+                </div>
+
+                <div id="lista-productos" class="grid-productos">
+                    <p class="loading">Conectando con la tostaduría...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESO DE COMPRA -->
+        <section id="proceso" class="section-padding bg-light">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="subtitulo">Compra fácil</span>
+                    <h2 class="titulo-seccion">¿Cómo realizar tu pedido?</h2>
+                    <p class="descripcion-seccion">
+                        En pocos pasos puedes seleccionar tus productos y confirmar tu compra.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="paso-card">
+                            <span>1</span>
+                            <h5>Explora el catálogo</h5>
+                            <p>Revisa las opciones disponibles y elige tus productos favoritos.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="paso-card">
+                            <span>2</span>
+                            <h5>Agrega al carrito</h5>
+                            <p>Tu pedido aparecerá automáticamente en el carrito lateral.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="paso-card">
+                            <span>3</span>
+                            <h5>Confirma tu compra</h5>
+                            <p>Selecciona efectivo o tarjeta y genera tu resumen de compra.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROMOCIONES / SUSCRIPCIÓN -->
+        <section id="suscripcion" class="section-padding bg-dark-amaretto text-white">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                        <span class="subtitulo subtitulo-claro">Promociones</span>
+                        <h2 class="titulo-seccion text-white">Recibe novedades de Amaretto</h2>
+                        <p>
+                            Suscríbete para recibir información sobre nuevos productos, promociones especiales
+                            y recomendaciones de la casa.
+                        </p>
+
+                        <div class="suscripcion-lista">
+                            <p><i class="bi bi-check-circle-fill"></i> Promociones de temporada</p>
+                            <p><i class="bi bi-check-circle-fill"></i> Productos destacados</p>
+                            <p><i class="bi bi-check-circle-fill"></i> Noticias y novedades de la cafetería</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <form class="form-card" id="form-suscripcion">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre completo</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Ej. Juan Pérez" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="correo" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="correo" placeholder="correo@ejemplo.com" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input type="tel" class="form-control" id="telefono" placeholder="+503 7000-0000" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-dorado w-100">
+                                <i class="bi bi-send-fill"></i> Suscribirme
+                            </button>
+
+                            <p id="mensaje-suscripcion" class="mt-3 mb-0"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section id="contacto" class="section-padding bg-light">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="subtitulo">Contacto</span>
+                    <h2 class="titulo-seccion">Visítanos o escríbenos</h2>
+                    <p class="descripcion-seccion">
+                        Estamos listos para atenderte y compartir contigo el mejor sabor de Amaretto.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="contacto-card">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <h5>Ubicación</h5>
+                            <p>San Salvador, El Salvador</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contacto-card">
+                            <i class="bi bi-envelope-fill"></i>
+                            <h5>Correo</h5>
+                            <p>contacto@amarettocoffee.com</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contacto-card">
+                            <i class="bi bi-whatsapp"></i>
+                            <h5>WhatsApp</h5>
+                            <p>+503 7000-0000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPATIBILIDAD OCULTA PARA APP.JS -->
+        <section id="carrito-seccion" class="d-none">
+            <table>
+                <tbody id="items-carrito"></tbody>
+            </table>
+            <span id="total-general">0.00</span>
+            <button id="btn-confirmar" type="button">Confirmar compra</button>
+        </section>
+
+    </main>
+
+    <!-- CARRITO FLOTANTE / OFFCANVAS -->
+    <div class="offcanvas offcanvas-end carrito-offcanvas" tabindex="-1" id="carritoFlotante" aria-labelledby="carritoFlotanteLabel" data-bs-scroll="true">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="carritoFlotanteLabel">
+                <i class="bi bi-cart4"></i> Tu pedido
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar carrito"></button>
+        </div>
+
+        <div class="offcanvas-body">
+            <div id="items-carrito-flotante" class="items-carrito-flotante">
+                <p class="text-center text-muted">Tu carrito está vacío.</p>
+            </div>
+
+            <div class="resumen-flotante mt-4">
+                <div class="d-flex justify-content-between">
+                    <span>Subtotal</span>
+                    <strong>$<span id="subtotal-flotante">0.00</span></strong>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <span>IVA 13%</span>
+                    <strong>$<span id="iva-flotante">0.00</span></strong>
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-between total-flotante">
+                    <span>Total</span>
+                    <strong>$<span id="total-flotante">0.00</span></strong>
+                </div>
+
+                <button id="btn-confirmar-flotante" class="btn btn-dorado w-100 mt-3">
+                    <i class="bi bi-check-circle-fill"></i> Confirmar compra
+                </button>
+
+                <button id="btn-seguir-comprando-offcanvas" class="btn btn-outline-secondary w-100 mt-2" type="button" data-bs-dismiss="offcanvas">
+                    Seguir comprando
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL MÉTODO DE PAGO -->
+    <div id="modal-pago" class="modal-amaretto" style="display: none;">
+        <div class="modal-content-amaretto">
+            <div class="text-center mb-4">
+                <h3><i class="bi bi-credit-card-2-front"></i> Método de pago</h3>
+                <p>Selecciona cómo deseas realizar tu compra.</p>
+            </div>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <button id="btn-pago-efectivo" class="btn btn-dorado w-100">
+                        <i class="bi bi-cash-coin"></i> Pagar en efectivo
+                    </button>
+                </div>
+
+                <div class="col-md-6">
+                    <button id="btn-pago-tarjeta" class="btn btn-outline-secondary w-100">
+                        <i class="bi bi-credit-card"></i> Pagar con tarjeta
+                    </button>
+                </div>
+            </div>
+
+            <form id="form-pago-tarjeta" style="display: none;">
+                <div class="mb-3">
+                    <label for="nombre-tarjeta" class="form-label">Nombre del titular</label>
+                    <input type="text" class="form-control" id="nombre-tarjeta" placeholder="Ej. Juan Pérez">
+                </div>
+
+                <div class="mb-3">
+                    <label for="numero-tarjeta" class="form-label">Número de tarjeta ficticio</label>
+                    <input type="text" class="form-control" id="numero-tarjeta" placeholder="4111 1111 1111 1111" maxlength="19">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="fecha-tarjeta" class="form-label">Vencimiento</label>
+                        <input type="text" class="form-control" id="fecha-tarjeta" placeholder="MM/AA" maxlength="5">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="cvv-tarjeta" class="form-label">CVV ficticio</label>
+                        <input type="password" class="form-control" id="cvv-tarjeta" placeholder="123" maxlength="4">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-dorado w-100">
+                    <i class="bi bi-lock-fill"></i> Simular pago con tarjeta
+                </button>
+
+                <p id="mensaje-pago" class="mt-3 mb-0 text-center"></p>
+            </form>
+
+            <button id="btn-cerrar-pago" class="btn btn-secondary w-100 mt-3">
+                Cancelar
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL FACTURA -->
+    <div id="modal-factura" class="modal-amaretto" style="display: none;">
+        <div class="modal-content-amaretto">
+            <div id="detalle-factura"></div>
+
+            <button id="btn-seguir-comprando" class="btn btn-secondary mt-3">
+                Seguir comprando
+            </button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer-amaretto">
+        <div class="container text-center">
+            <p class="mb-1">
+                <strong>Amaretto Coffee Shop</strong> | Café salvadoreño de especialidad
+            </p>
+
+            <p class="mb-0">
+                Tradición, sabor y una experiencia digital pensada para ti.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JS propio -->
+    <script type="module" src="js/app.js"></script>
+
+    <!-- Script para formulario de suscripción -->
+    <script>
+        const formSuscripcion = document.getElementById("form-suscripcion");
+        const mensajeSuscripcion = document.getElementById("mensaje-suscripcion");
+
+        if (formSuscripcion) {
+            formSuscripcion.addEventListener("submit", function(e) {
+                e.preventDefault();
+
+                const nombre = document.getElementById("nombre").value.trim();
+                const correo = document.getElementById("correo").value.trim().toLowerCase();
+                const telefono = document.getElementById("telefono").value.trim();
+
+                if (nombre === "" || correo === "" || telefono === "") {
+                    mensajeSuscripcion.textContent = "Por favor, completa todos los campos.";
+                    mensajeSuscripcion.style.color = "#ffc107";
+                    return;
+                }
+
+                const cliente = {
+                    id: Date.now(),
+                    nombre,
+                    correo,
+                    telefono
+                };
+
+                let clientes = JSON.parse(localStorage.getItem("clientesAmaretto")) || [];
+                clientes.push(cliente);
+                localStorage.setItem("clientesAmaretto", JSON.stringify(clientes));
+
+                mensajeSuscripcion.textContent = "Gracias por suscribirte a Amaretto Coffee Shop.";
+                mensajeSuscripcion.style.color = "#ffffff";
+
+                formSuscripcion.reset();
+            });
+        }
+    </script>
+
+</body>
+</html>

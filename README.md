@@ -1,79 +1,47 @@
-# DPS-Investigacion
-Desarrollo de un carrito de compra, para poner en práctica JavaScript
-# Amaretto Coffee Shop 
+# Amaretto Web Shop
 
-## 📌 Descripción
+Amaretto Web Shop es una plataforma web desarrollada como proyecto académico para apoyar la transformación digital de una microempresa salvadoreña del rubro cafetero.
 
-Aplicación web desarrollada con HTML5, CSS3 y JavaScript modular.
-Simula una tienda virtual donde el usuario puede agregar productos al carrito y generar una factura dinámica.
+El sitio permite visualizar productos en un catálogo digital, seleccionar productos mediante un carrito de compras, calcular el total del pedido y registrar clientes potenciales mediante un formulario de suscripción.
 
----
+## Objetivo
 
-## Integrantes 
+Diseñar una plataforma web funcional para Amaretto Coffee Shop, mediante la digitalización del catálogo de productos y la automatización del registro de pedidos en línea, con el propósito de fortalecer la presencia de marca y optimizar la experiencia del cliente.
 
-Valentina Paola Chavez Sandoval - CS252400
-Kevin Arturo Vaquerano Morales - VM223215
+## Funcionalidades principales
 
----
+- Página principal con identidad visual de Amaretto Coffee Shop.
+- Catálogo digital de productos.
+- Carrito de compras interactivo.
+- Cálculo automático del total del pedido.
+- Confirmación de compra mediante factura o resumen.
+- Formulario de suscripción para clientes potenciales.
+- Sección informativa sobre el proyecto.
+- Diseño responsive para computadora y dispositivos móviles.
 
-## 🧱 Tecnologías Utilizadas
+## Tecnologías utilizadas
 
 - HTML5
 - CSS3
-- JavaScript (ES6 Modules)
-- GitHub
+- JavaScript
+- Bootstrap
+- Bootstrap Icons
+- LocalStorage
+- Git y GitHub
 
----
+## Alcance de la versión actual
 
-## 📂 Estructura del Proyecto
+La versión actual incluye las funciones principales definidas para una primera entrega funcional: catálogo digital, carrito de compras, cálculo de pedidos y registro básico de clientes potenciales.
 
-/proyecto
- ├── .vs
-   ├── index.html
-   ├── style.css
-   └── /java
-      ├── BD.js
-      └── app.js
+No se incluyen pagos en línea, aplicación móvil, sistema avanzado de usuarios ni servicio de envío a domicilio, ya que estas funciones quedan como mejoras futuras.
 
----
+## Relación con el proyecto académico
 
-## 🛒 Funcionalidades
+Este sitio forma parte del proyecto final Amaretto Web Shop de la asignatura Dirección de Proyectos. La solución está alineada con la planificación, gestión de calidad, análisis de riesgos, cronograma, costos y objetivos definidos en las fases anteriores.
 
-- Renderizado dinámico de productos.
-- Gestión del carrito de compras.
-- Cálculo automático de subtotales y total.
-- Eliminación de productos.
-- Generación de factura en un modal.
-- Opción de "Seguir Comprando".
+## Ejecución del proyecto
 
----
+1. Clonar el repositorio:
 
-## 🧩 Modularización
-
-### BD.js
-Contiene el arreglo de productos que simula una base de datos.
-
-### app.js
-Se encarga de:
-- Mostrar productos en el DOM.
-- Manejar el carrito.
-- Calcular totales.
-- Generar la factura.
-- Controlar eventos del usuario.
-
----
-
-## 🚀 Despliegue
-
-El proyecto fue desplegado en GitHub Pages / Netlify.
-
----
-
-## 👩‍💻 Rol en el Proyecto
-
-Interactividad e Integración:
-- Gestión del carrito.
-- Generación de factura dinámica.
-- Integración de módulos.
-- Configuración del repositorio.
-- Documentación técnica.
+```bash
+git clone https://github.com/kevVaquerano/DPS-Investigacion.git
