@@ -368,6 +368,82 @@ function abrirModalPago() {
 
     modalPago.style.display = "flex";
 }
+function descargarFacturaPDF(compraRealizada, totales, metodoPago, autorizacion, fecha) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    let y = 20;
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text("Amaretto Coffee Shop", 105, y, { align: "center" });
+
+    y += 8;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+    doc.text("Factura / Resumen de compra", 105, y, { align: "center" });
+
+    y += 12;
+    doc.setFontSize(10);
+    doc.text(`Fecha: ${fecha}`, 15, y);
+    y += 7;
+    doc.text(`Metodo de pago: ${metodoPago}`, 15, y);
+    y += 7;
+    doc.text(`Autorizacion: ${autorizacion}`, 15, y);
+
+    y += 10;
+    doc.line(15, y, 195, y);
+    y += 8;
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Detalle de productos", 15, y);
+    y += 8;
+
+    doc.setFont("helvetica", "normal");
+
+    compraRealizada.forEach(producto => {
+        const subtotal = producto.precio * producto.cantidad;
+
+        if (y > 260) {
+            doc.addPage();
+            y = 20;
+        }
+
+        doc.setFont("helvetica", "bold");
+        doc.text(producto.nombre, 15, y);
+
+        doc.setFont("helvetica", "normal");
+        y += 6;
+        doc.text(`Categoria: ${producto.categoria}`, 15, y);
+        y += 6;
+        doc.text(`Cantidad: ${producto.cantidad}`, 15, y);
+        y += 6;
+        doc.text(`Precio unitario: $${producto.precio.toFixed(2)}`, 15, y);
+        y += 6;
+        doc.text(`Subtotal: $${subtotal.toFixed(2)}`, 15, y);
+        y += 8;
+    });
+
+    y += 4;
+    doc.line(15, y, 195, y);
+    y += 10;
+
+    doc.setFont("helvetica", "bold");
+    doc.text(`Subtotal: $${totales.subtotal.toFixed(2)}`, 15, y);
+    y += 7;
+    doc.text(`IVA 13%: $${totales.iva.toFixed(2)}`, 15, y);
+    y += 8;
+
+    doc.setFontSize(14);
+    doc.text(`TOTAL PAGADO: $${totales.total.toFixed(2)}`, 15, y);
+
+    y += 15;
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    doc.text("Gracias por comprar en Amaretto Coffee Shop.", 105, y, { align: "center" });
+
+    doc.save(`factura-amaretto-${Date.now()}.pdf`);
+}
 
 function finalizarCompra(metodoPago, autorizacion = "N/A") {
     if (carrito.length === 0) {
@@ -383,6 +459,7 @@ function finalizarCompra(metodoPago, autorizacion = "N/A") {
     const fecha = new Date().toLocaleString("es-SV");
 
     registrarVenta(compraRealizada, totales, metodoPago, autorizacion);
+    descargarFacturaPDF(compraRealizada, totales, metodoPago, autorizacion, fecha);
 
     detalleFactura.innerHTML = `
         <div class="factura-header">

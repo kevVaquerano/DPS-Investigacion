@@ -10,10 +10,344 @@ const panelAdmin = document.getElementById("panel-admin");
 const formLoginAdmin = document.getElementById("form-login-admin");
 const mensajeLoginAdmin = document.getElementById("mensaje-login-admin");
 const btnCerrarSesion = document.getElementById("btn-cerrar-sesion");
+const btnDescargarVentas = document.getElementById("btn-descargar-ventas");
+const btnDescargarInventario = document.getElementById("btn-descargar-inventario");
+const btnDescargarInforme = document.getElementById("btn-descargar-informe");
 
 const USUARIO_ADMIN = "admin";
 const PASSWORD_ADMIN = "12345678";
+function crearEncabezadoPDF(doc, titulo) {
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text("Amaretto Coffee Shop", 105, 18, { align: "center" });
 
+    doc.setFontSize(13);
+    doc.text(titulo, 105, 28, { align: "center" });
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text(`Fecha de generacion: ${new Date().toLocaleString("es-SV")}`, 15, 40);
+
+    doc.line(15, 45, 195, 45);
+}
+
+function descargarVentasPDF() {
+    const ventas = obtenerVentas();
+
+    if (ventas.length === 0) {
+        alert("No hay ventas registradas para descargar.");
+        return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    crearEncabezadoPDF(doc, "Informe de ventas");
+
+    let y = 55;
+
+    ventas.forEach((venta, index) => {
+        if (y > 255) {
+            doc.addPage();
+            crearEncabezadoPDF(doc, "Informe de ventas");
+            y = 55;
+        }
+
+        const productosTexto = venta.productos
+            .map(producto => `${producto.nombre} x${producto.cantidad}`)
+            .join(", ");
+
+        doc.setFont("helvetica", "bold");
+        doc.text(`Venta #${index + 1}`, 15, y);
+
+        doc.setFont("helvetica", "normal");
+        y += 6;
+        doc.text(`Fecha: ${venta.fecha}`, 15, y);
+        y += 6;
+        doc.text(`Metodo de pago: ${venta.metodoPago || "N/A"}`, 15, y);
+        y += 6;
+        doc.text(`Autorizacion: ${venta.autorizacion || "N/A"}`, 15, y);
+        y += 6;
+
+        const productosLineas = doc.splitTextToSize(`Productos: ${productosTexto}`, 180);
+        doc.text(productosLineas, 15, y);
+        y += productosLineas.length * 6;
+
+        doc.text(`Subtotal: $${venta.subtotal.toFixed(2)}`, 15, y);
+        y += 6;
+        doc.text(`IVA: $${venta.iva.toFixed(2)}`, 15, y);
+        y += 6;
+
+        doc.setFont("helvetica", "bold");
+        doc.text(`Total: $${venta.total.toFixed(2)}`, 15, y);
+
+        y += 10;
+        doc.line(15, y, 195, y);
+        y += 8;
+    });
+
+    doc.save(`ventas-amaretto-${Date.now()}.pdf`);
+}
+
+function descargarInventarioPDF() {
+    const resumen = obtenerVentasPorProducto();
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    crearEncabezadoPDF(doc, "Informe de inventario");
+
+    let y = 55;
+
+    resumen.forEach(producto => {
+        if (y > 255) {
+            doc.addPage();
+            crearEncabezadoPDF(doc, "Informe de inventario");
+            y = 55;
+        }
+
+        const stockInicial = producto.stock;
+        const stockRestante = stockInicial - producto.vendido;
+        const estado = stockRestante <= 5 ? "Stock bajo" : "Disponible";
+
+        doc.setFont("helvetica", "bold");
+        doc.text(producto.nombre, 15, y);
+
+        doc.setFont("helvetica", "normal");
+        y += 6;
+        doc.text(`Categoria: ${producto.categoria}`, 15, y);
+        y += 6;
+        doc.text(`Precio: $${producto.precio.toFixed(2)}`, 15, y);
+        y += 6;
+        doc.text(`Stock inicial: ${stockInicial}`, 15, y);
+        y += 6;
+        doc.text(`Vendido: ${producto.vendido}`, 15, y);
+        y += 6;
+        doc.text(`Stock restante: ${stockRestante}`, 15, y);
+        y += 6;
+        doc.text(`Estado: ${estado}`, 15, y);
+
+        y += 10;
+        doc.line(15, y, 195, y);
+        y += 8;
+    });
+
+    doc.save(`inventario-amaretto-${Date.now()}.pdf`);
+}
+function dibujarTablaPDF(doc, encabezados, filas, x, y, anchos) {
+    const altoFila = 8;
+    let posicionY = y;
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+
+    // Encabezado
+    doc.setFillColor(43, 22, 13);
+    doc.setTextColor(255, 255, 255);
+
+    let posicionX = x;
+
+    encabezados.forEach((encabezado, index) => {
+        doc.rect(posicionX, posicionY, anchos[index], altoFila, "F");
+        doc.text(encabezado, posicionX + 2, posicionY + 5.5);
+        posicionX += anchos[index];
+    });
+
+    posicionY += altoFila;
+
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(0, 0, 0);
+
+    filas.forEach(fila => {
+        if (posicionY > 270) {
+            doc.addPage();
+            posicionY = 20;
+        }
+
+        posicionX = x;
+
+        fila.forEach((dato, index) => {
+            const texto = String(dato);
+            const textoCortado = doc.splitTextToSize(texto, anchos[index] - 4);
+
+            doc.rect(posicionX, posicionY, anchos[index], altoFila);
+            doc.text(textoCortado[0] || "", posicionX + 2, posicionY + 5.5);
+
+            posicionX += anchos[index];
+        });
+
+        posicionY += altoFila;
+    });
+}
+function descargarInformeGeneralPDF() {
+    const ventas = obtenerVentas();
+    const resumenProductos = obtenerVentasPorProducto();
+
+    const totalVendido = ventas.reduce((suma, venta) => suma + venta.total, 0);
+
+    const cantidadProductosVendidos = ventas.reduce((suma, venta) => {
+        return suma + venta.productos.reduce((sub, producto) => sub + producto.cantidad, 0);
+    }, 0);
+
+    const masVendidos = [...resumenProductos]
+        .sort((a, b) => b.vendido - a.vendido)
+        .slice(0, 5);
+
+    const menosVendidos = [...resumenProductos]
+        .sort((a, b) => a.vendido - b.vendido)
+        .slice(0, 5);
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    crearEncabezadoPDF(doc, "Informe general administrativo");
+
+    let y = 55;
+
+    // ===============================
+    // RESUMEN GENERAL
+    // ===============================
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(13);
+    doc.text("Resumen general", 15, y);
+
+    y += 8;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text(`Total vendido: $${totalVendido.toFixed(2)}`, 15, y);
+    y += 6;
+    doc.text(`Compras realizadas: ${ventas.length}`, 15, y);
+    y += 6;
+    doc.text(`Productos vendidos: ${cantidadProductosVendidos}`, 15, y);
+    y += 6;
+    doc.text(`Productos en inventario: ${productos.length}`, 15, y);
+
+    // ===============================
+    // MÁS VENDIDOS
+    // ===============================
+    y += 14;
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(13);
+    doc.text("Productos más vendidos", 15, y);
+
+    y += 8;
+
+    dibujarTablaPDF(
+        doc,
+        ["Producto", "Vendidos"],
+        masVendidos.map(producto => [
+            producto.nombre,
+            producto.vendido.toString()
+        ]),
+        15,
+        y,
+        [130, 45]
+    );
+
+    y += 12 + masVendidos.length * 8;
+
+    // ===============================
+    // MENOS VENDIDOS
+    // ===============================
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(13);
+    doc.text("Productos menos vendidos", 15, y);
+
+    y += 8;
+
+    dibujarTablaPDF(
+        doc,
+        ["Producto", "Vendidos"],
+        menosVendidos.map(producto => [
+            producto.nombre,
+            producto.vendido.toString()
+        ]),
+        15,
+        y,
+        [130, 45]
+    );
+
+    y += 12 + menosVendidos.length * 8;
+
+    // ===============================
+    // NUEVA PÁGINA PARA INVENTARIO
+    // ===============================
+    doc.addPage();
+    crearEncabezadoPDF(doc, "Informe general administrativo");
+
+    y = 55;
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(13);
+    doc.text("Inventario resumido", 15, y);
+
+    y += 8;
+
+    const filasInventario = resumenProductos.map(producto => {
+        const stockRestante = producto.stock - producto.vendido;
+        const estado = stockRestante <= 5 ? "Stock bajo" : "Disponible";
+
+        return [
+            producto.nombre,
+            producto.stock.toString(),
+            producto.vendido.toString(),
+            stockRestante.toString(),
+            estado
+        ];
+    });
+
+    dibujarTablaPDF(
+        doc,
+        ["Producto", "Stock", "Vendido", "Restante", "Estado"],
+        filasInventario,
+        10,
+        y,
+        [65, 25, 25, 30, 40]
+    );
+
+    // ===============================
+    // HISTORIAL DE VENTAS
+    // ===============================
+    doc.addPage();
+    crearEncabezadoPDF(doc, "Informe general administrativo");
+
+    y = 55;
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(13);
+    doc.text("Historial de ventas", 15, y);
+
+    y += 8;
+
+    if (ventas.length === 0) {
+        doc.setFont("helvetica", "normal");
+        doc.text("No hay ventas registradas.", 15, y);
+    } else {
+        const filasVentas = ventas.map(venta => {
+            const productosTexto = venta.productos
+                .map(producto => `${producto.nombre} x${producto.cantidad}`)
+                .join(", ");
+
+            return [
+                venta.fecha,
+                venta.metodoPago || "N/A",
+                `$${venta.total.toFixed(2)}`,
+                productosTexto
+            ];
+        });
+
+        dibujarTablaPDF(
+            doc,
+            ["Fecha", "Método", "Total", "Productos"],
+            filasVentas,
+            10,
+            y,
+            [45, 30, 25, 85]
+        );
+    }
+
+    doc.save(`informe-general-amaretto-${Date.now()}.pdf`);
+}
 function verificarSesion() {
     const sesionActiva = sessionStorage.getItem("adminAmarettoAuth");
 
@@ -213,5 +547,16 @@ btnLimpiarVentas.addEventListener("click", () => {
         location.reload();
     }
 });
+if (btnDescargarVentas) {
+    btnDescargarVentas.addEventListener("click", descargarVentasPDF);
+}
+
+if (btnDescargarInventario) {
+    btnDescargarInventario.addEventListener("click", descargarInventarioPDF);
+}
+
+if (btnDescargarInforme) {
+    btnDescargarInforme.addEventListener("click", descargarInformeGeneralPDF);
+}
 
 verificarSesion();
