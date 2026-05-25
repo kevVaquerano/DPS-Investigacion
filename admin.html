@@ -77,6 +77,19 @@
                 En este panel se muestran datos simulados de ventas, productos más vendidos,
                 productos con menor movimiento e inventario disponible.
             </p>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+                <button id="btn-descargar-ventas" class="btn btn-dorado">
+                    <i class="bi bi-download"></i> Descargar ventas PDF
+                </button>
+
+                <button id="btn-descargar-inventario" class="btn btn-outline-secondary">
+                    <i class="bi bi-box-seam"></i> Descargar inventario PDF
+                </button>
+
+                <button id="btn-descargar-informe" class="btn btn-outline-dark">
+                    <i class="bi bi-file-earmark-text"></i> Descargar informe general PDF
+                </button>
+            </div>
         </section>
 
         <!-- TARJETAS RESUMEN -->
@@ -217,5 +230,7 @@
     </main>
 
     <script type="module" src="js/admin.js"></script>
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 </html>
